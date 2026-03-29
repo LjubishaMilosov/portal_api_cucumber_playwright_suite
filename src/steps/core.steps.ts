@@ -1,41 +1,23 @@
-/**
- * Core API Steps
- * GetCountries, GetCurrencies, GetLanguages
- */
-
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '../world';
-import {
-  fetchCountries,
-  fetchCurrencies,
-  fetchLanguages,
-} from '../api/endpoints/core.api';
-import { executeFetch } from '../support/utils';
-import {
-  countriesSchema,
-  currenciesSchema,
-  languagesSchema,
-} from '../api/schemas/core.schema';
+import { apiGet } from '../utils/request';
+import { CustomWorld } from '../world';
+import { countriesSchema, currenciesSchema, languagesSchema } from '../api/schemas/core.schema';
 import { validateSchema } from '../validators/schemaValidator';
 
-// ==================== GetCountries ====================
-
-When('I make a GET request to fetch all countries', async function (this: ICustomWorld) {
-  await executeFetch(this, fetchCountries, './reports/debug/countries.json');
+When('I make a GET request to fetch all countries', async function (this: CustomWorld) {
+  await apiGet(this, '/base/GetCountries');
 });
 
-Then('The response should match the countries schema', async function (this: ICustomWorld) {
+Then('The response should match the countries schema', async function (this: CustomWorld) {
   validateSchema(countriesSchema, this.responseBody, 'Countries');
 });
 
-// ==================== GetCurrencies ====================
-
-When('I make a GET request to fetch all currencies', async function (this: ICustomWorld) {
-  await executeFetch(this, fetchCurrencies, './reports/debug/currencies.json');
+When('I make a GET request to fetch all currencies', async function (this: CustomWorld) {
+  await apiGet(this, '/base/GetCurrencies');
 });
 
-Then('I expect the response to have currencies data', async function (this: ICustomWorld) {
+Then('I expect the response to have currencies data', async function (this: CustomWorld) {
   const data = this.responseBody;
   expect(data).toBeTruthy();
   expect(data.Currencies).toBeTruthy();
@@ -44,13 +26,11 @@ Then('I expect the response to have currencies data', async function (this: ICus
   validateSchema(currenciesSchema, this.responseBody, 'Currencies');
 });
 
-// ==================== GetLanguages ====================
-
-When('I make a GET request to fetch all languages', async function (this: ICustomWorld) {
-  await executeFetch(this, fetchLanguages, './reports/debug/languages.json');
+When('I make a GET request to fetch all languages', async function (this: CustomWorld) {
+  await apiGet(this, '/base/GetLanguages');
 });
 
-Then('I expect the response to have languages data', async function (this: ICustomWorld) {
+Then('I expect the response to have languages data', async function (this: CustomWorld) {
   const data = this.responseBody;
   expect(data).toBeTruthy();
   expect(data.Languages).toBeTruthy();

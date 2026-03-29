@@ -3,51 +3,28 @@
  * Generates random, non-hardcoded test user data for registration tests
  */
 
-/**
- * Generates a unique timestamp-based identifier
- * Format: YYYYMMDDHHMMSS
- */
-
 function generateTimestamp(): string {
   const now = new Date();
-  return now
-    .toISOString()
-    .replace(/[-T:]/g, '')
-    .slice(0, 14);
+  return now.toISOString().replace(/[-T:]/g, '').slice(0, 14);
 }
 
-/**
- * Generates a random 3-5 character string
- */
 function generateRandomSuffix(): string {
   return Math.random().toString(36).substring(2, 7).toUpperCase();
 }
 
-/**
- * Generates a unique email using btobet.net domain
- * Format: testuser_[timestamp]_[random]@btobet.net
- */
-export function generateTestEmail(): string {
+function generateTestEmail(): string {
   const timestamp = generateTimestamp();
   const suffix = generateRandomSuffix();
   return `testuser_${timestamp}_${suffix}@btobet.net`;
 }
 
-/**
- * Generates a unique username for registration
- * Format: user_[timestamp]_[random]
- */
-export function generateTestUsername(): string {
+function generateTestUsername(): string {
   const timestamp = generateTimestamp();
   const suffix = generateRandomSuffix();
   return `user_${timestamp}_${suffix}`;
 }
 
-/**
- * Generates a random password meeting typical requirements
- * Contains: uppercase, lowercase, numbers, special chars
- */
-export function generateTestPassword(): string {
+function generateTestPassword(): string {
   const chars = {
     uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     lowercase: 'abcdefghijklmnopqrstuvwxyz',
@@ -72,38 +49,20 @@ export function generateTestPassword(): string {
     .join('');
 }
 
-/**
- * Generates a random 4-character country ISO code
- */
-function generateCountryISO(): string {
-  return 'MK';
+function generateAddress(): string {
+  const streets = ['Main', 'Oak', 'Elm', 'Maple', 'Pine', 'Cedar', 'Birch', 'Walnut', 'Spruce', 'Ash'];
+  const street = streets[Math.floor(Math.random() * streets.length)];
+  const number = Math.floor(Math.random() * 9000) + 1000;
+  return `${number} ${street} Street`;
 }
 
-/**
- * Generates a random language ISO code
- */
-function generateLanguageISO(): string {
-  return 'EN';
+function generatePhoneNumber(): string {
+  const operators = ['080', '081', '090', '091'];
+  const operator = operators[Math.floor(Math.random() * operators.length)];
+  const eightDigits = Math.floor(Math.random() * 99999999) + 10000000;
+  return `${operator}${eightDigits}`;
 }
 
-/**
- * Generates a random currency ISO code
- */
-function generateCurrencyISO(): string {
-  return 'EUR';
-}
-
-/**
- * Generates a valid IP address
- */
-function generateIPAddress(): string {
-  // return `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-  return '192.142.185.115';
-}
-
-/**
- * Generates a random first name
- */
 function generateFirstName(): string {
   const firstNames = [
     'John',
@@ -126,9 +85,6 @@ function generateFirstName(): string {
   return firstNames[Math.floor(Math.random() * firstNames.length)];
 }
 
-/**
- * Generates a random last name
- */
 function generateLastName(): string {
   const lastNames = [
     'Smith',
@@ -151,18 +107,11 @@ function generateLastName(): string {
   return lastNames[Math.floor(Math.random() * lastNames.length)];
 }
 
-/**
- * Generates a random gender (Male or Female)
- */
 function generateGender(): string {
   const genders = ['Male', 'Female'];
   return genders[Math.floor(Math.random() * genders.length)];
 }
 
-/**
- * Generates a random date of birth (between 18 and 80 years old)
- * Format: YYYY-MM-DD
- */
 function generateDateOfBirth(): string {
   const today = new Date();
   const minAge = 18;
@@ -176,9 +125,6 @@ function generateDateOfBirth(): string {
   return birthDate.toISOString().split('T')[0];
 }
 
-/**
- * Generates a random city name
- */
 function generateCity(): string {
   const cities = [
     'Lagos',
@@ -195,31 +141,22 @@ function generateCity(): string {
   return cities[Math.floor(Math.random() * cities.length)];
 }
 
-/**
- * Generates a random street address
- */
-function generateAddress(): string {
-  const streets = ['Main', 'Oak', 'Elm', 'Maple', 'Pine', 'Cedar', 'Birch', 'Walnut', 'Spruce', 'Ash'];
-  const street = streets[Math.floor(Math.random() * streets.length)];
-  const number = Math.floor(Math.random() * 9000) + 1000;
-  return `${number} ${street} Street`;
+function generateCountryISO(): string {
+  return 'MK';
 }
 
-/**
- * Generates a Nigerian phone number with domestic format
- * Format: 080XXXXXXXX (phone) or 081XXXXXXXX (mobile)
- */
-function generatePhoneNumber(): string {
-  const operators = ['080', '081', '090', '091'];
-  const operator = operators[Math.floor(Math.random() * operators.length)];
-  const eightDigits = Math.floor(Math.random() * 99999999) + 10000000;
-  return `${operator}${eightDigits}`;
+function generateLanguageISO(): string {
+  return 'EN';
 }
 
-/**
- * Generates a test registration request payload
- * All values are dynamically generated - no hardcoding
- */
+function generateCurrencyISO(): string {
+  return 'EUR';
+}
+
+function generateIPAddress(): string {
+  return '192.142.185.115';
+}
+
 export function generateRegistrationPayload() {
   const phoneNumber = generatePhoneNumber();
   const mobileNumber = generatePhoneNumber();

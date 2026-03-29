@@ -1,28 +1,30 @@
-/**
- * Login/Register API Steps
- * RegisterAccount
- */
-
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '../world';
-import { registerNewAccount } from '../api/endpoints/login-register.api';
-import { executeFetch } from '../support/utils';
+import { apiPost } from '../utils/request';
+import { generateRegistrationPayload } from '../utils/dynamicTestData';
+import { CustomWorld } from '../world';
 import { registerAccountResponseSchema } from '../api/schemas/login-register.schema';
 import { validateSchema } from '../validators/schemaValidator';
 
 // ==================== RegisterAccount ====================
 
-When('I register a new account with dynamic test user data', async function (this: ICustomWorld) {
-  await executeFetch(this, registerNewAccount, './reports/debug/register-account.json');
+When('I register a new account with dynamic test user data', async function (this: CustomWorld) {
+  const payload = generateRegistrationPayload();
+  this.testData = {
+    email: payload.Customer.CustomerDetails.Email,
+    username: payload.Customer.CustomerDetails.Username,
+    password: payload.Customer.CustomerDetails.Password,
+  };
+
+  await apiPost(this, '/customer/RegisterAccount', payload);
 });
 
-Then('The response should match the register account schema', async function (this: ICustomWorld) {
+Then('The response should match the register account schema', async function (this: CustomWorld) {
   // Only validate success schema (200)
   validateSchema(registerAccountResponseSchema, this.responseBody, 'RegisterAccountResponse');
 });
 
-Then('the registered account should have a valid InternalID', async function (this: ICustomWorld) {
+Then('the registered account should have a valid InternalID', async function (this: CustomWorld) {
   const response = this.responseBody;
   expect(response).toBeTruthy();
   expect(response.Customer).toBeTruthy();
@@ -32,7 +34,7 @@ Then('the registered account should have a valid InternalID', async function (th
 });
 
 Then('the registered account should be logged in with a valid token', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
 ) {
   const response = this.responseBody;
   expect(response.Customer.IsLoggedIn).toBe(false);//for the being user is not loggedin after registration
@@ -42,7 +44,7 @@ Then('the registered account should be logged in with a valid token', async func
 });
 
 Then('the registration response should contain activation information', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
 ) {
   const response = this.responseBody;
   expect(response.Activation).toBeTruthy();
@@ -51,7 +53,7 @@ Then('the registration response should contain activation information', async fu
 });
 
 Then('I should be able to access the generated user credentials', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
 ) {
   expect(this.testData).toBeTruthy();
   expect(this.testData.email).toBeTruthy();
@@ -61,7 +63,7 @@ Then('I should be able to access the generated user credentials', async function
   expect(this.testData.email).toContain('testuser_');
 });
 
-Then('the response RequestID should be present and valid', async function (this: ICustomWorld) {
+Then('the response RequestID should be present and valid', async function (this: CustomWorld) {
   // For 200 responses, RequestID is at the top level
   const response = this.responseBody;
   expect(response.RequestID).toBeTruthy();

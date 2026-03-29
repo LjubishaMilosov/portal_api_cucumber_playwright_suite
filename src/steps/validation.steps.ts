@@ -1,20 +1,14 @@
-/**
- * Validation Steps (Generic/Shared)
- * Reusable validation steps across all API tests
- * CI/CD appropriate: Generic, domain-agnostic validation logic
- */
-
 import { Then, DataTable } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '../world';
-import { compareDataTables } from '../support/utils';
+import { CustomWorld } from '../world';
+import { compareDataTables } from '../support/utils/dataValidators';
 
 /**
  * Generic step: Verify status code
  * Usage: Then I expect the response status to be OK with code 200
  */
 Then('I expect the response status to be OK with code {int}', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
   expectedStatus: number,
 ) {
   expect(this.status).toBe(expectedStatus);
@@ -25,7 +19,7 @@ Then('I expect the response status to be OK with code {int}', async function (
  * Usage: Then I expect the response status to be one of "200,206"
  */
 Then('I expect the response status to be one of {string}', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
   statusCodes: string,
 ) {
   const validStatuses = statusCodes.split(',').map((code) => parseInt(code.trim(), 10));
@@ -40,7 +34,7 @@ Then('I expect the response status to be one of {string}', async function (
  *     | 1         | AF         |
  */
 Then('I expect the response to contain the following data in {string}', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
   responseField: string,
   dataTable: DataTable,
 ) {
@@ -66,7 +60,7 @@ Then('I expect the response to contain the following data in {string}', async fu
  * Usage: And the response should contain at least 30 items in "Countries"
  */
 Then('the response should contain at least {int} items in {string}', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
   minCount: number,
   field: string,
 ) {
@@ -79,7 +73,7 @@ Then('the response should contain at least {int} items in {string}', async funct
  * Generic step: Verify field exists and is not empty
  * Usage: And the {string} field should not be empty
  */
-Then('the {string} field should not be empty', async function (this: ICustomWorld, field: string) {
+Then('the {string} field should not be empty', async function (this: CustomWorld, field: string) {
   const value = this.responseBody[field];
   expect(value).toBeTruthy();
 });

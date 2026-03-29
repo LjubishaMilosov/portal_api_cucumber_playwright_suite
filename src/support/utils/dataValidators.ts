@@ -5,7 +5,7 @@
  */
 
 import { APIResponse, expect } from '@playwright/test';
-import { ICustomWorld } from '../../world';
+import { CustomWorld } from '../../world';
 
 /**
  * Compares actual data with expected data using primary key matching
@@ -39,8 +39,8 @@ export function compareDataTables(actual: any[], expected: any[], matchFields: s
     if (!matchingRow) {
       throw new Error(
         `Row not found for ${primaryKey}=${primaryKeyValue}\n` +
-          `Expected row: ${JSON.stringify(expectedRow)}\n` +
-          `Available rows with key=${primaryKey}:\n${actual.map((row) => `  - ${row[primaryKey]}`).join('\n')}`,
+        `Expected row: ${JSON.stringify(expectedRow)}\n` +
+        `Available rows with key=${primaryKey}:\n${actual.map((row) => `  - ${row[primaryKey]}`).join('\n')}`,
       );
     }
 
@@ -70,7 +70,7 @@ export function compareDataTables(actual: any[], expected: any[], matchFields: s
  * @param response - Playwright APIResponse
  * @returns Parsed JSON response body
  */
-export async function handleResponse(world: ICustomWorld, response: APIResponse): Promise<any> {
+export async function handleResponse(world: CustomWorld, response: APIResponse): Promise<any> {
   world.status = response.status();
   world.response = response;
 
@@ -90,7 +90,7 @@ export async function handleResponse(world: ICustomWorld, response: APIResponse)
  * @param world - Cucumber world
  * @param expectedStatus - Expected HTTP status code
  */
-export function verifyStatusCode(world: ICustomWorld, expectedStatus: number): void {
+export function verifyStatusCode(world: CustomWorld, expectedStatus: number): void {
   expect(world.status).toBe(expectedStatus);
 }
 

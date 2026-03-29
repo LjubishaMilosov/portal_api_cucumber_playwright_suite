@@ -1,27 +1,21 @@
-/**
- * Freebet API Steps
- * GetAllFreeBetBonuses
- */
-
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '../world';
-import { fetchFreeBetBonuses } from '../api/endpoints/freebet.api';
-import { executeFetch } from '../support/utils';
+import { apiGet } from '../utils/request';
+import { CustomWorld } from '../world';
 import { freeBetBonusesSchema } from '../api/schemas/freebet.schema';
 import { validateSchema } from '../validators/schemaValidator';
 
 // ==================== GetAllFreeBetBonuses ====================
 
-When('I make a GET request to fetch all freebet bonuses', async function (this: ICustomWorld) {
-  await executeFetch(this, fetchFreeBetBonuses, './reports/debug/freebets.json');
+When('I make a GET request to fetch all freebet bonuses', async function (this: CustomWorld) {
+  await apiGet(this, '/freebet/GetAllFreeBetBonuses');
 });
 
-Then('The response should match the freebet bonuses schema', async function (this: ICustomWorld) {
+Then('The response should match the freebet bonuses schema', async function (this: CustomWorld) {
   validateSchema(freeBetBonusesSchema, this.responseBody, 'FreebetBonuses');
 });
 
-Then('I expect the response to contain freebet bonuses data', async function (this: ICustomWorld) {
+Then('I expect the response to contain freebet bonuses data', async function (this: CustomWorld) {
   const data = this.responseBody;
   expect(data).toBeTruthy();
   expect(data.Bonuses).toBeTruthy();
@@ -34,7 +28,7 @@ Then('I expect the response to contain freebet bonuses data', async function (th
 });
 
 Then('the freebet bonus list should contain at least {int} bonuses', async function (
-  this: ICustomWorld,
+  this: CustomWorld,
   minCount: number,
 ) {
   const bonuses = this.responseBody.Bonuses;
@@ -42,7 +36,7 @@ Then('the freebet bonus list should contain at least {int} bonuses', async funct
   expect(bonuses.length).toBeGreaterThanOrEqual(minCount);
 });
 
-Then('each freebet bonus should have required fields', async function (this: ICustomWorld) {
+Then('each freebet bonus should have required fields', async function (this: CustomWorld) {
   const bonuses = this.responseBody.Bonuses;
   const requiredFields = [
     'BonusType',

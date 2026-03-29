@@ -5,17 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "test:dev": "npx cucumber-js --tags \"@dev\"",
+    "test:dev": "cucumber-js --tags @dev",
     "test:debug": "cucumber-js --format progress",
     "prepare": "husky install",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"**/*.{ts,tsx,feature}\"",
     "snippets": "cucumber-js --dry-run --format snippets",
-    "cucumber:web": "npx cucumber-js --tags \"not @mobile\"",
+    "cucumber:web": "cucumber-js --tags \"not @mobile\"",
     "cucumber:mobile": "cucumber-js --tags @mobile",
-    "cucumber:all": "npx cucumber-js",
-    "cucumber:dev": "npx cucumber-js --tags \"@dev\""
+    "cucumber:all": "cucumber-js",
+    "cucumber:dev": "cucumber-js --tags \"@dev\""
   },
   "keywords": [],
   "author": "Ljubisha Milosov",
