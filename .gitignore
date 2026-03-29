@@ -1,0 +1,85 @@
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Test Data
+data/
+
+# IDE & Editor
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test Reports & Results
+reports/
+out/
+test-results/
+playwright-report/
+blob-report/
+junit-report.xml
+*.html
+
+# Playwright Cache & Auth
+/playwright/.cache/
+/playwright/.auth/
+
+# ESLint Cache
+.eslintcache
+
+# Test Data (Response Files)
+data/
+/data/*.json
+
+# TypeScript Compiled Output
+dist/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.yarn
+
+# OS Files
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+
+# Build Output
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# Credentials & Keys (if accidentally committed)
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+keystore
+secrets/
+

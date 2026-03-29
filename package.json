@@ -1,0 +1,53 @@
+{
+  "name": "portal-api-cucumber-playwright-suite",
+  "version": "1.0.0",
+  "description": "Playwright API Testing Suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:dev": "npx cucumber-js --tags \"@dev\"",
+    "test:debug": "cucumber-js --format progress",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,feature}\"",
+    "snippets": "cucumber-js --dry-run --format snippets",
+    "cucumber:web": "npx cucumber-js --tags \"not @mobile\"",
+    "cucumber:mobile": "cucumber-js --tags @mobile",
+    "cucumber:all": "npx cucumber-js",
+    "cucumber:dev": "npx cucumber-js --tags \"@dev\""
+  },
+  "keywords": [],
+  "author": "Ljubisha Milosov",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.7.0",
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.6.1",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-playwright": "^0.15.3",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.14.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
+    "playwright": "^1.58.2",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.18.2"
+  },
+  "dependencies": {
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "ts-node": "^10.9.2"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  }
+}

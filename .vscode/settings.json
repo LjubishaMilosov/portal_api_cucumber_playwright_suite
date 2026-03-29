@@ -1,0 +1,62 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": true,
+  "editor.minimap.showSlider": "always",
+  "editor.mouseWheelZoom": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.tabCompletion": "on",
+  "files.exclude": {
+    "**/.git": true,
+    "**/build": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.env": false,
+    "**/.env.local": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.next": true,
+    "**/data": true,
+    "**/reports": false
+  },
+  "git.autofetch": true,
+  "git.ignoreLimitWarning": true,
+  "eslint.options": {
+    "extensions": [".js", ".ts"]
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.bracketSpacing": true,
+  "prettier.arrowParens": "always",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTypescriptVersion": true,
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.implementationsCodeLens.enabled": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "cucumberautocomplete.syncfeatures": "./features/**/*.feature",
+  "cucumberautocomplete.steps": ["src/steps/**/*.ts", "dist/steps/**/*.js"],
+  "cucumberautocomplete.requireModule": ["ts-node/register"],
+  "cucumberautocomplete.smartSnippets": true,
+  "cucumberautocomplete.strictGherkinCompletion": false,
+  "cucumberautocomplete.formatUtil": "prettier",
+  "window.zoomLevel": 0
+}

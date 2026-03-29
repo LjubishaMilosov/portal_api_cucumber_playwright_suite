@@ -1,0 +1,11 @@
+{
+  "customer": {
+    "internalID": 710308,
+    "externalID": "710308",
+    "username": "gptestautomationuser",
+    "email": "gptestautomationuser@test.com",
+    "countryISO": "NG",
+    "currencyISO": "EUR",
+    "languageISO": "EN"
+  }
+}

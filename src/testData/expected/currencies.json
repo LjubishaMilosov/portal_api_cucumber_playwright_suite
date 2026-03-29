@@ -1,0 +1,23 @@
+[
+  {
+    "CurrencyID": 1,
+    "CurrencyISO": "EUR",
+    "CurrencyName": "Euro",
+    "CurrencySymbol": "€",
+    "IsBaseCurrency": true
+  },
+  {
+    "CurrencyID": 10,
+    "CurrencyISO": "GBP",
+    "CurrencyName": "Pound",
+    "CurrencySymbol": "£",
+    "IsBaseCurrency": false
+  },
+  {
+    "CurrencyID": 25,
+    "CurrencyISO": "CAD",
+    "CurrencyName": "Canadian Dollar",
+    "CurrencySymbol": "C$",
+    "IsBaseCurrency": false
+  }
+]

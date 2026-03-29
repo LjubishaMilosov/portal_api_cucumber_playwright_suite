@@ -1,0 +1,6 @@
+{
+  "require": ["dist/**/*.js"],
+  "requireModule": ["ts-node/register"],
+  "format": ["progress-bar", "@cucumber/pretty-formatter"],
+  "parallel": 1
+}
