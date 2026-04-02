@@ -1,9 +1,3 @@
-/**
- * JSON Schemas for Login/Register API endpoints
- * Validates: RegisterAccount response (success and partial content with validation errors)
- */
-
-// Success response schema (200)
 export const registerAccountResponseSchema = {
   type: 'object',
   properties: {

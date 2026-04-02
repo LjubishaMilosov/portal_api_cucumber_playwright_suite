@@ -1,8 +1,3 @@
-/**
- * JSON Schemas for Freebet API endpoints
- * Validates: GetAllFreeBetBonuses
- */
-
 export const freeBetBonusesSchema = {
   type: 'object',
   properties: {

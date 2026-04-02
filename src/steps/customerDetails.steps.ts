@@ -1,15 +1,10 @@
-/**
- * Customer API Steps
- * GetDetails
- */
-
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiGet } from '../utils/request';
-import { config } from '../utils/config';
-import { CustomWorld } from '../world';
-import { customerDetailsSchema } from '../api/schemas/customer.schema';
-import { validateSchema } from '../validators/schemaValidator';
+import { config } from '../config/config';
+import { CustomWorld } from '../support/world';
+import { customerDetailsSchema } from '../schemas/customer.schema';
+import { validateSchema } from '../utils/schemaValidator';
 
 When('I make a GET request to get customer details', async function (this: CustomWorld) {
   const playerId = config.internalId;

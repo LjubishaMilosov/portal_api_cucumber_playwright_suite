@@ -1,8 +1,8 @@
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiGet } from '../utils/request';
-import { config } from '../utils/config';
-import { CustomWorld } from '../world';
+import { config } from '../config/config';
+import { CustomWorld } from '../support/world';
 
 When('I make a GET request to fetch game details with default game code', async function (this: CustomWorld) {
   if (!config.defaultGameCode) {

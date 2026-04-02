@@ -1,8 +1,3 @@
-/**
- * JSON Schemas for Customer API endpoints
- * Validates: GetDetails
- */
-
 const accountSchema = {
   type: 'object',
   properties: {

@@ -1,5 +1,5 @@
-import { CustomWorld } from '../world';
-import { config } from './config';
+import { CustomWorld } from '../support/world';
+import { config } from '../config/config';
 import type { APIResponse } from '@playwright/test';
 
 async function parseResponseBody(response: APIResponse) {

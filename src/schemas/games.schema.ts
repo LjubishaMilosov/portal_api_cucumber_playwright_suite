@@ -1,8 +1,3 @@
-/**
- * JSON Schemas for Games API endpoints
- * Validates: GetGame
- */
-
 const gameCategorySchema = {
   type: 'object',
   properties: {

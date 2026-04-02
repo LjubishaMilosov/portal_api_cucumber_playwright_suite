@@ -1,9 +1,9 @@
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiGet } from '../utils/request';
-import { CustomWorld } from '../world';
-import { countriesSchema, currenciesSchema, languagesSchema } from '../api/schemas/core.schema';
-import { validateSchema } from '../validators/schemaValidator';
+import { CustomWorld } from '../support/world';
+import { countriesSchema, currenciesSchema, languagesSchema } from '../schemas/core.schema';
+import { validateSchema } from '../utils/schemaValidator';
 
 When('I make a GET request to fetch all countries', async function (this: CustomWorld) {
   await apiGet(this, '/base/GetCountries');

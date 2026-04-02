@@ -2,9 +2,9 @@ import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiPost } from '../utils/request';
 import { generateRegistrationPayload } from '../utils/dynamicTestData';
-import { CustomWorld } from '../world';
-import { registerAccountResponseSchema } from '../api/schemas/login-register.schema';
-import { validateSchema } from '../validators/schemaValidator';
+import { CustomWorld } from '../support/world';
+import { registerAccountResponseSchema } from '../schemas/register.schema';
+import { validateSchema } from '../utils/schemaValidator';
 
 // ==================== RegisterAccount ====================
 

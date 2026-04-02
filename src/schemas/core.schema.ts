@@ -1,11 +1,3 @@
-/**
- * JSON Schemas for Core API endpoints
- * Validates: GetCountries, GetCurrencies, GetLanguages (Core feature set)
- *
- * Note: This replaces base.schema.ts for improved naming clarity.
- * "Core" indicates these are fundamental/core APIs, not "base" (foundation).
- */
-
 export const countriesSchema = {
   type: 'object',
   properties: {

@@ -1,9 +1,9 @@
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiGet } from '../utils/request';
-import { CustomWorld } from '../world';
-import { freeBetBonusesSchema } from '../api/schemas/freebet.schema';
-import { validateSchema } from '../validators/schemaValidator';
+import { CustomWorld } from '../support/world';
+import { freeBetBonusesSchema } from '../schemas/freebet.schema';
+import { validateSchema } from '../utils/schemaValidator';
 
 // ==================== GetAllFreeBetBonuses ====================
 

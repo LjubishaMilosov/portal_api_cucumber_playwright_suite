@@ -5,7 +5,7 @@
  */
 
 import { APIResponse, expect } from '@playwright/test';
-import { CustomWorld } from '../../world';
+import { CustomWorld } from '../support/world';
 
 /**
  * Compares actual data with expected data using primary key matching
