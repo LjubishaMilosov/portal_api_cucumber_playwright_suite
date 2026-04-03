@@ -6,7 +6,6 @@ export class CustomWorld extends World {
   response!: APIResponse;
   responseBody!: any;
   status!: number;
-  testData?: any;
 }
 
 setWorldConstructor(CustomWorld);

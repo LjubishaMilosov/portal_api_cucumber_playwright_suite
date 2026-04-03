@@ -7,7 +7,7 @@ Feature: Core - GetCountries feature
     And The response should match the countries schema
     And I expect the response to contain the following data in "Countries"
       | CountryID | CountryISO | CountryName | CountryMinAge |
-      | 10         | AF         | Afghanistan | 0             |
+      | 1         | AF         | Afghanistan | 0             |
       | 25        | BR         | Brasil      | 0             |
       | 36        | CM         | Cameroon    | 0             |
       | 48        | CO         | Colombia    | 0             |

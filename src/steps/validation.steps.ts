@@ -1,3 +1,14 @@
+// Utility to convert string 'null'/'undefined' to JS null/undefined in expectedRows
+function normalizeNulls(rows: any[]): any[] {
+  return rows.map(row =>
+    Object.fromEntries(
+      Object.entries(row).map(([k, v]) => [
+        k,
+        v === 'null' ? null : v === 'undefined' ? undefined : v,
+      ])
+    )
+  );
+}
 import { Then, DataTable } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { CustomWorld } from '../support/world';
@@ -8,6 +19,8 @@ Then('I expect the response status to be OK with code {int}', async function (
   this: CustomWorld,
   expectedStatus: number,
 ) {
+  if (this.status !== expectedStatus) {
+  }
   expect(this.status).toBe(expectedStatus);
 });
 
@@ -17,6 +30,8 @@ Then('I expect the response status to be one of {string}', async function (
   statusCodes: string,
 ) {
   const validStatuses = statusCodes.split(',').map((code) => parseInt(code.trim(), 10));
+  if (!validStatuses.includes(this.status)) {
+  }
   expect(validStatuses).toContain(this.status);
 });
 
@@ -27,6 +42,8 @@ Then('I expect the response to contain the following data in {string}', async fu
   dataTable: DataTable,
 ) {
   const list = this.responseBody[responseField];
+  if (!list) {
+  }
 
   expect(
     list,
@@ -37,8 +54,9 @@ Then('I expect the response to contain the following data in {string}', async fu
 
   expect(Array.isArray(list)).toBe(true);
 
-  const expectedRows = dataTable.hashes();
+  const expectedRows = normalizeNulls(dataTable.hashes());
   const fields = Object.keys(expectedRows[0]);
+
 
   compareDataTables(list, expectedRows, fields);
 });

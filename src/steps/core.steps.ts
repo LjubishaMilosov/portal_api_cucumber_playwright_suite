@@ -1,3 +1,4 @@
+
 import { When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { apiGet } from '../utils/request';
@@ -38,3 +39,34 @@ Then('I expect the response to have languages data', async function (this: Custo
   expect(data.Languages.length).toBeGreaterThan(0);
   validateSchema(languagesSchema, this.responseBody, 'Languages');
 });
+
+// Updated endpoints for new API paths
+When('I make a GET request to fetch the calculated exchange amount', async function (this: CustomWorld) {
+  await apiGet(this, '/api/base/GetCalculatedExchangeAmount');
+});
+
+When('I make a GET request to fetch the calculated original amount', async function (this: CustomWorld) {
+  await apiGet(this, '/api/base/GetCalculatedOriginalAmount');
+});
+
+When('I make a GET request to fetch All game providers', async function (this: CustomWorld) {
+  await apiGet(this, '/api/base/GetGameProviders');
+});
+
+When('I make a GET request to fetch all portal brands', async function (this: CustomWorld) {
+  await apiGet(this, '/api/base/GetPortalBrands');
+});
+
+// ...existing code...
+
+// Validate exchange amount and request ID
+Then('I expect the response to have a valid exchange amount and request ID', async function (this: CustomWorld) {
+  expect(this.responseBody).toBeTruthy();
+  expect(this.responseBody.ExchangeAmount).toBeDefined();
+  expect(typeof this.responseBody.ExchangeAmount).toBe('number');
+  expect(this.responseBody.RequestID).toBeDefined();
+});
+
+
+
+// ...existing code...
